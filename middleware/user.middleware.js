@@ -21,6 +21,7 @@ const validUserHasExist = async (ctx, next) => {
     const user = await UserService.getUserInfo({user_name})
     if (user) {
       ctx.app.emit('error', userAlreadyExited, ctx)
+      return
     }
   } catch (e) {
     console.log(e)
