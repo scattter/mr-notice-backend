@@ -14,6 +14,7 @@ class UserController {
         result: {
           id: res.id,
           user_name: res.user_name,
+          token: res.token
         },
       }
     } catch (e) {

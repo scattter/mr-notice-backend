@@ -1,8 +1,8 @@
 const Koa = require('koa')
-const path = require("path");
 const KoaBody = require("koa-body");
 const parameter = require('koa-parameter')
 const router = require('./routers/index')
+const { validMiddleware } = require('./middleware/valid.middleware')
 const errHandler = require('./errhandler/globalHandler')
 
 const app = new Koa()
@@ -16,6 +16,7 @@ app.use(
   })
 )
 app.use(parameter(app))
+app.use(validMiddleware)
 app.use(router.routes()).use(router.allowedMethods())
 app.on('error', errHandler)
 

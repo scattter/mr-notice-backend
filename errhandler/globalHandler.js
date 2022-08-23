@@ -9,6 +9,13 @@ module.exports = (err, ctx) => {
       break
     case '10003':
       status = 500
+      break
+    case '10004':
+      status = 403
+      break
+    case '10005':
+      status = 403
+      break
   }
   ctx.status = status
   ctx.body = err
