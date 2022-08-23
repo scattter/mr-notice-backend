@@ -3,7 +3,8 @@ const UserService = require('../service/user.service')
 
 const {
   userFormatterError,
-  userAlreadyExited
+  userAlreadyExited,
+  userRegisterError
 } = require('../types/errTypes/user.type')
 
 const validRegisterFormatter = async (ctx, next) => {
@@ -25,6 +26,8 @@ const validUserHasExist = async (ctx, next) => {
     }
   } catch (e) {
     console.log(e)
+    ctx.app.emit('error', userRegisterError, ctx)
+    return
   }
   await next()
 }
