@@ -9,7 +9,7 @@ const path = require('path');
 //生成token
 //info也就是payload是需要存入token的信息
 function createToken(data) {
-  const cert = fs.readFileSync(path.join(__dirname, '../../rsa_private_key.pem'))
+  const cert = fs.readFileSync(path.join(__dirname, '../../../rsa_private_key.pem'))
   const created = Date.now()
   // data里面是jwt的payload信息
   return jwt.sign(

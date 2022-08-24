@@ -4,10 +4,13 @@ const UserService = require('../service/user.service')
 const {
   userFormatterError,
   userAlreadyExited,
-  userRegisterError
+  userRegisterError,
+  userNotExited,
+  userPasswordError,
+  userError
 } = require('../types/errTypes/user.type')
 
-const validRegisterFormatter = async (ctx, next) => {
+const validUserFormatter = async (ctx, next) => {
   const {user_name, password} = ctx.request.body || {}
   if (!user_name || !password) {
     ctx.app.emit('error', userFormatterError, ctx)
@@ -32,7 +35,42 @@ const validUserHasExist = async (ctx, next) => {
   await next()
 }
 
+const validUserPassword = async (ctx, next) => {
+  const { user_name, password } = ctx.request.body || {}
+  try {
+    const user = await UserService.getUserInfo({user_name})
+    if (!user) {
+      ctx.app.emit('error', userNotExited, ctx)
+      return
+    }
+    const { password: db_password } = user
+    if (!db_password || db_password !== password) {
+      ctx.app.emit('error', userPasswordError, ctx)
+      return
+    }
+    if (db_password === password) {
+      // 传递给
+      ctx.app.status = {
+        id: user.id,
+        user_name: user.user_name,
+        password: db_password
+      }
+      await next()
+      return
+    } else {
+      // 未知错误
+      ctx.app.emit('error', userError, ctx)
+    }
+  } catch (e) {
+    console.log(e)
+    ctx.app.emit('error', userError, ctx)
+    return
+  }
+  await next()
+}
+
 module.exports = {
   validUserHasExist,
-  validRegisterFormatter
+  validUserFormatter,
+  validUserPassword
 }

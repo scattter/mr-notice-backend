@@ -33,6 +33,11 @@ class UserService {
       console.log(e)
     }
   }
+
+  async loginUser(password) {
+    // 生成token
+    return createToken(password)
+  }
 }
 
 module.exports = new UserService()
