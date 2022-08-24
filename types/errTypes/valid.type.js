@@ -1,11 +1,13 @@
+const CodeMap = require('../http.type')
+
 module.exports = {
   tokenFormatterError: {
-    code: '10004',
+    code: CodeMap.FORBIDDEN,
     message: 'token为空',
     result: ''
   },
   tokenExpiredError: {
-    code: '10005',
+    code: CodeMap.FORBIDDEN,
     message: 'token已过期',
     result: ''
   },

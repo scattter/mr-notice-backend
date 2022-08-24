@@ -1,20 +1,22 @@
+const CodeMap = require('../types/http.type')
+
 module.exports = (err, ctx) => {
   let status = 500
   switch (err.code) {
-    case '10001':
+    case CodeMap.BAD_REQUEST:
       status = 400
       break
-    case '10002':
+    case CodeMap.FORBIDDEN:
+      status = 403
+      break
+    case CodeMap.NOT_FOUND:
+      status = 404
+      break
+    case CodeMap.CONFLICT:
       status = 409
       break
-    case '10003':
+    case CodeMap.SERVER_ERROR:
       status = 500
-      break
-    case '10004':
-      status = 403
-      break
-    case '10005':
-      status = 403
       break
   }
   ctx.status = status
