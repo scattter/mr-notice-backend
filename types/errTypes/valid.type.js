@@ -8,7 +8,7 @@ module.exports = {
   },
   tokenExpiredError: {
     code: CodeMap.FORBIDDEN,
-    message: 'token已过期',
+    message: 'token无效',
     result: ''
   },
 }
