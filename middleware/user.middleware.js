@@ -1,4 +1,4 @@
-const UserService = require('../service/user.service')
+const UserService = require('@service/user.service')
 
 const {
   userFormatterError,
@@ -7,7 +7,7 @@ const {
   userNotExited,
   userPasswordError,
   userError
-} = require('../types/errTypes/user.type')
+} = require('@types/errTypes/user.type')
 
 const validUserFormatter = async (ctx, next) => {
   const {user_name, password} = ctx.request.body || {}

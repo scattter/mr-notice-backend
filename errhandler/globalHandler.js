@@ -1,4 +1,4 @@
-const CodeMap = require('../types/http.type')
+const CodeMap = require('@types/http.type')
 
 module.exports = (err, ctx) => {
   let status = 500

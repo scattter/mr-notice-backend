@@ -1,4 +1,4 @@
-const Pipeline = require('../model/pipeline.model')
+const Pipeline = require('@model/pipeline.model')
 
 class PipelineService {
   async createPipeline(pipelineName, admin, relateRepo, relateBranch) {

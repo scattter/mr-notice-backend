@@ -1,12 +1,12 @@
 const Router = require('koa-router')
 
 const router = new Router({prefix: '/api/v1/users'})
-const { registerUser, loginUser } = require('../controller/user.controller')
+const { registerUser, loginUser } = require('@controller/user.controller')
 const {
   validUserFormatter,
   validUserHasExist,
   validUserPassword
-} = require('../middleware/user.middleware')
+} = require('@middleware/user.middleware')
 
 router.post('/register', validUserFormatter, validUserHasExist, registerUser)
 

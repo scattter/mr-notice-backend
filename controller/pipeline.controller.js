@@ -1,5 +1,5 @@
-const PipelineService = require('../service/pipeline.service')
-const { pipelineCreateError, pipelineQueryError } = require("../types/errTypes/pipeline.type");
+const PipelineService = require('@service/pipeline.service')
+const { pipelineCreateError, pipelineQueryError } = require("@types/errTypes/pipeline.type");
 
 class PipelineController {
   async createPipeline(ctx, next) {
