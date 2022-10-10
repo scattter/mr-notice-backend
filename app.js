@@ -1,8 +1,9 @@
+require('module-alias/register')
 const Koa = require('koa')
 const KoaBody = require("koa-body");
 const parameter = require('koa-parameter')
 const router = require('./routers/index')
-const { validMiddleware } = require('./middleware/valid.middleware')
+const { validMiddleware } = require('@middleware/valid.middleware')
 const errHandler = require('./errhandler/globalHandler')
 
 const app = new Koa()

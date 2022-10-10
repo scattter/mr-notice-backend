@@ -1,5 +1,4 @@
-const User = require('../model/user.model')
-const UserService = require('../service/user.service')
+const UserService = require('@service/user.service')
 
 const {
   userFormatterError,
@@ -8,7 +7,7 @@ const {
   userNotExited,
   userPasswordError,
   userError
-} = require('../types/errTypes/user.type')
+} = require('@types/errTypes/user.type')
 
 const validUserFormatter = async (ctx, next) => {
   const {user_name, password} = ctx.request.body || {}
@@ -28,7 +27,6 @@ const validUserHasExist = async (ctx, next) => {
       return
     }
   } catch (e) {
-    console.log(e)
     ctx.app.emit('error', userRegisterError, ctx)
     return
   }
@@ -49,20 +47,18 @@ const validUserPassword = async (ctx, next) => {
       return
     }
     if (db_password === password) {
-      // 传递给
+      // 先赋值  然后传递给controller
       ctx.app.status = {
         id: user.id,
         user_name: user.user_name,
         password: db_password
       }
-      await next()
-      return
     } else {
       // 未知错误
       ctx.app.emit('error', userError, ctx)
+      return
     }
   } catch (e) {
-    console.log(e)
     ctx.app.emit('error', userError, ctx)
     return
   }

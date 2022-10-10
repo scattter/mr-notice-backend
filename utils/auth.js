@@ -15,7 +15,7 @@ function createToken(data) {
   return jwt.sign(
     {
       id: data,
-      exp: created + 60 * 60 * 10 //Token有效时间 单位s 10小时
+      exp: created + 60 * 60 * 10 * 1000 //Token有效时间 单位s 10小时
     },
     cert,
     {
@@ -34,8 +34,8 @@ function verifyToken(token) {
       } else {
         const { exp = 0 } = result
         const current = Date.now();
-        // 验证时效性 如果当前时间大于过期时间 那么通过 否则抛出错误
-        if (current >= exp) {
+        // 验证时效性 如果当前时间小于过期时间 那么通过 否则抛出错误
+        if (current <= exp) {
           resolve(result)
         } else {
           reject(result)

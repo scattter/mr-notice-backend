@@ -2,30 +2,37 @@ const { DataTypes } = require('sequelize')
 
 const mysql = require('../db/seq')
 
-const User = mysql.define('user', {
+const PipelineList = mysql.define('pipeline', {
   id: {
     type: DataTypes.INTEGER,
     primaryKey: true,
     autoIncrement: true
   },
-  user_name: {
+  pipelineName: {
     type: DataTypes.CHAR(64),
     allowNull: false,
     unique: true,
-    comment: '用户名, 唯一且不为空, 最长64个字符'
+    comment: '流水线名称, 唯一且不为空, 最长64个字符'
   },
-  password: {
+  admin: {
     type: DataTypes.CHAR(64),
     allowNull: false,
     unique: false,
-    comment: ''
+    comment: '流水线创建人'
   },
-  role: {
+  relateRepo: {
     type: DataTypes.STRING,
     allowNull: false,
     unique: false,
     defaultValue: 'normal',
-    comment: '用户角色'
+    comment: '流水线绑定仓库'
+  },
+  relateBranch: {
+    type: DataTypes.STRING,
+    allowNull: true,
+    unique: false,
+    defaultValue: 'master',
+    comment: '流水线绑定分支'
   }
 }, {
   // 如果为 true 则表的名称和 model 相同，即 user
@@ -34,4 +41,4 @@ const User = mysql.define('user', {
   freezeTableName: true
 })
 
-module.exports = User
+module.exports = PipelineList
