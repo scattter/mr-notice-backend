@@ -1,4 +1,4 @@
-const UserService = require('@service/user.service')
+const UserService = require('../service/user.service')
 
 const { userRegisterError, userError } = require('@types/errTypes/user.type')
 

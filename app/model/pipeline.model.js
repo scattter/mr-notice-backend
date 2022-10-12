@@ -1,6 +1,6 @@
 const { DataTypes } = require('sequelize')
 
-const mysql = require('../db/seq')
+const mysql = require('../../db/seq')
 
 const PipelineList = mysql.define('pipeline', {
   id: {

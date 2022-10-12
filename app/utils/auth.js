@@ -26,7 +26,7 @@ function createToken(data) {
 
 //验证Token
 function verifyToken(token) {
-  const cert = fs.readFileSync(path.join(__dirname, '../pem/rsa_public_key.pem'))
+  const cert = fs.readFileSync(path.join(__dirname, '../../pem/rsa_public_key.pem'))
   return new Promise((resolve, reject) => {
     return jwt.verify(token, cert, { algorithms: ['RS256'] }, (error, result) => {
       if(error){
