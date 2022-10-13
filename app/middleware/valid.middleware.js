@@ -1,9 +1,10 @@
-const passUrl = ['/api/v1/users/login', '/api/v1/users/register']
+const { verifyToken } = require('@app/utils/auth')
 const {
-  tokenFormatterError,
   tokenExpiredError,
+  tokenFormatterError,
 } = require('@types/errTypes/valid.type')
-const { verifyToken } = require('../utils/auth')
+
+const passUrl = ['/api/v1/users/login', '/api/v1/users/register']
 
 const validMiddleware = async (ctx, next) => {
   const url = ctx.request.url

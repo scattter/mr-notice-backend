@@ -1,10 +1,10 @@
-const {
-  pipelineFormatterError,
-  pipelineMissParamsError,
-  pipelineAlreadyExited,
-  pipelineCreateError
-} = require("@types/errTypes/pipeline.type");
 const PipelineService = require('@service/pipeline.service')
+const {
+  pipelineAlreadyExited,
+  pipelineCreateError,
+  pipelineFormatterError,
+  pipelineMissParamsError
+} = require('@types/errTypes/pipeline.type');
 
 const validPipelineFormatter = async (ctx, next) => {
   const {pipelineName, admin, relateRepo, relateBranch} = ctx.request.body || {}

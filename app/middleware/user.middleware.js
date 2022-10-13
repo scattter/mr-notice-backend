@@ -1,12 +1,12 @@
 const UserService = require('@service/user.service')
 
 const {
-  userFormatterError,
   userAlreadyExited,
-  userRegisterError,
+  userError,
+  userFormatterError,
   userNotExited,
   userPasswordError,
-  userError
+  userRegisterError
 } = require('@types/errTypes/user.type')
 
 const validUserFormatter = async (ctx, next) => {

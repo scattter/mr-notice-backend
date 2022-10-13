@@ -1,6 +1,6 @@
-const jwt = require('jsonwebtoken')
 // 引入模块依赖
 const fs = require('fs');
+const jwt = require('jsonwebtoken')
 const path = require('path');
 
 //撒盐，加密时候混淆
