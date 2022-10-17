@@ -25,5 +25,5 @@ const validMiddleware = async (ctx, next) => {
 }
 
 module.exports = {
-  validMiddleware
+  validMiddleware,
 }

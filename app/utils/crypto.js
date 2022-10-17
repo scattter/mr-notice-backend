@@ -1,4 +1,4 @@
-const CryptoJS = require('crypto-js');
+const CryptoJS = require('crypto-js')
 
 // 十六位十六进制数作为密钥
 const SECRET_KEY = CryptoJS.enc.Utf8.parse('scatter-12345678')
@@ -6,7 +6,7 @@ const SECRET_KEY = CryptoJS.enc.Utf8.parse('scatter-12345678')
 const SECRET_IV = CryptoJS.enc.Utf8.parse('1234123412341234')
 
 //加密方法
-const Encrypt = (context) => {
+const Encrypt = context => {
   const encodeContent = CryptoJS.enc.Utf8.parse(context)
   const encrypted = CryptoJS.AES.encrypt(encodeContent, SECRET_KEY, {
     iv: SECRET_IV,
@@ -17,7 +17,7 @@ const Encrypt = (context) => {
 }
 
 // 解密方法
-const Decrypt = (context) => {
+const Decrypt = context => {
   const encryptedHexStr = CryptoJS.enc.Hex.parse(context)
   const encodeContent = CryptoJS.enc.Base64.stringify(encryptedHexStr)
   const decrypt = CryptoJS.AES.decrypt(encodeContent, SECRET_KEY, {
@@ -31,5 +31,5 @@ const Decrypt = (context) => {
 
 module.exports = {
   Encrypt,
-  Decrypt
+  Decrypt,
 }

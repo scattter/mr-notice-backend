@@ -4,29 +4,29 @@ const { createToken } = require('../utils/auth')
 class UserService {
   async createUser(user_name, password) {
     try {
-      const res = await User.create({user_name, password})
+      const res = await User.create({ user_name, password })
       // 生成token并返回 这里的密码还没有进行解码 直接用来生成token了
       const token = createToken(password)
       return {
         ...res.dataValues,
-        token
+        token,
       }
     } catch (e) {
       console.log('an error occur', e)
     }
   }
 
-  async getUserInfo({id, user_name, password, role}) {
+  async getUserInfo({ id, user_name, password, role }) {
     const obj = {}
-    id && Object.assign(obj, {id})
-    user_name && Object.assign(obj, {user_name})
-    password && Object.assign(obj, {password})
-    role && Object.assign(obj, {role})
+    id && Object.assign(obj, { id })
+    user_name && Object.assign(obj, { user_name })
+    password && Object.assign(obj, { password })
+    role && Object.assign(obj, { role })
 
     try {
       const info = await User.findOne({
         attributes: ['id', 'user_name', 'password', 'role'],
-        where: obj
+        where: obj,
       })
       return info ? info.dataValues : null
     } catch (e) {

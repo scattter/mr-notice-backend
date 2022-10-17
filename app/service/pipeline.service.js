@@ -3,7 +3,12 @@ const Pipeline = require('@model/pipeline.model')
 class PipelineService {
   async createPipeline(pipelineName, admin, relateRepo, relateBranch) {
     try {
-      const res = await Pipeline.create({pipelineName, admin, relateRepo, relateBranch})
+      const res = await Pipeline.create({
+        pipelineName,
+        admin,
+        relateRepo,
+        relateBranch,
+      })
       return {
         ...res.dataValues,
       }
@@ -17,8 +22,8 @@ class PipelineService {
       const pipeline = await Pipeline.findOne({
         attributes: ['pipelineName'],
         where: {
-          pipelineName
-        }
+          pipelineName,
+        },
       })
       return pipeline ? pipeline.dataValues : null
     } catch (e) {
