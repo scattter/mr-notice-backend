@@ -2,11 +2,12 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@controller/*": ["controller/*"],
-      "@middleware/*": ["middleware/*"],
-      "@model/*": ["model/*"],
-      "@service/*": ["service/*"],
-      "@types/*": ["types/*"]
+      "@controller/*": ["app/controller/*"],
+      "@middleware/*": ["app/middleware/*"],
+      "@model/*": ["app/model/*"],
+      "@service/*": ["app/service/*"],
+      "@types/*": ["app/types/*"],
+      "@app/*": ["app/*"]
     }
   }
 }

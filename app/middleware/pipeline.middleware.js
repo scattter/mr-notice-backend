@@ -1,18 +1,24 @@
+const PipelineService = require('@service/pipeline.service')
 const {
+  pipelineAlreadyExited,
+  pipelineCreateError,
   pipelineFormatterError,
   pipelineMissParamsError,
-  pipelineAlreadyExited,
-  pipelineCreateError
-} = require("@types/errTypes/pipeline.type");
-const PipelineService = require('@service/pipeline.service')
+} = require('@types/errTypes/pipeline.type')
 
 const validPipelineFormatter = async (ctx, next) => {
-  const {pipelineName, admin, relateRepo, relateBranch} = ctx.request.body || {}
+  const { pipelineName, admin, relateRepo, relateBranch } =
+    ctx.request.body || {}
   if (!pipelineName || !admin || !relateRepo || !relateBranch) {
     ctx.app.emit('error', pipelineMissParamsError, ctx)
     return
   }
-  if (typeof pipelineName !== 'string' || typeof admin !== 'string' || typeof relateRepo !== 'string' || typeof relateBranch !== 'string') {
+  if (
+    typeof pipelineName !== 'string' ||
+    typeof admin !== 'string' ||
+    typeof relateRepo !== 'string' ||
+    typeof relateBranch !== 'string'
+  ) {
     ctx.app.emit('error', pipelineFormatterError, ctx)
     return
   }
@@ -36,5 +42,5 @@ const validPipelineHasExist = async (ctx, next) => {
 
 module.exports = {
   validPipelineFormatter,
-  validPipelineHasExist
+  validPipelineHasExist,
 }

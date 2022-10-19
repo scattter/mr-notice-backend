@@ -1,10 +1,10 @@
-const UserService = require('@service/user.service')
+const UserService = require('../service/user.service')
 
-const { userRegisterError, userError } = require('@types/errTypes/user.type')
+const { userError, userRegisterError } = require('@types/errTypes/user.type')
 
 class UserController {
   async registerUser(ctx, next) {
-    const {user_name, password} = ctx.request.body
+    const { user_name, password } = ctx.request.body
 
     try {
       const res = await UserService.createUser(user_name, password)
@@ -14,7 +14,7 @@ class UserController {
         result: {
           id: res.id,
           user_name: res.user_name,
-          token: res.token
+          token: res.token,
         },
       }
     } catch (e) {
@@ -33,7 +33,7 @@ class UserController {
         result: {
           id,
           user_name,
-          token
+          token,
         },
       }
     } catch (e) {

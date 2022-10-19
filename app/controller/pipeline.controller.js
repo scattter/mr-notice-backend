@@ -1,12 +1,21 @@
 const PipelineService = require('@service/pipeline.service')
-const { pipelineCreateError, pipelineQueryError } = require("@types/errTypes/pipeline.type");
+
+const {
+  pipelineCreateError,
+  pipelineQueryError,
+} = require('@types/errTypes/pipeline.type')
 
 class PipelineController {
   async createPipeline(ctx, next) {
     const { pipelineName, admin, relateRepo, relateBranch } = ctx.request.body
 
     try {
-      const res = await PipelineService.createPipeline(pipelineName, admin, relateRepo, relateBranch)
+      const res = await PipelineService.createPipeline(
+        pipelineName,
+        admin,
+        relateRepo,
+        relateBranch
+      )
       ctx.body = {
         code: 10000,
         message: '流水线创建成功',
