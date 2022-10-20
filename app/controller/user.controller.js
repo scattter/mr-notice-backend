@@ -13,7 +13,7 @@ class UserController {
         message: '用户注册成功',
         result: {
           id: res.id,
-          user_name: res.user_name,
+          name: res.user_name,
           token: res.token,
         },
       }
