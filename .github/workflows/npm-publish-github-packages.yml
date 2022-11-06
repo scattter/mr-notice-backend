@@ -1,0 +1,22 @@
+# This workflow will run tests using node and then publish a package to GitHub Packages when a release is created
+# For more information see: https://docs.github.com/en/actions/publishing-packages/publishing-nodejs-packages
+
+name: Node.js Package
+
+on:
+  push:
+    branches: [ master, dev ]
+  pull_request:
+    branches: [ master, dev ]
+
+jobs:
+  docker-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: connect serve and deploy
+        uses: appleboy/ssh-action@v0.1.5
+        with:
+          username: root
+          host: ${{ secrets.REMOTE_HOST }}
+          password: ${{ secrets.REMOTE_PASSWORD }}
+          script: ${{ secrets.REMOTE_DEPLOY_SHELL }}
