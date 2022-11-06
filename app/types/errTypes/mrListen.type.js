@@ -1,29 +1,29 @@
 const CodeMap = require('../http.type')
 
 module.exports = {
-  pipelineFormatterError: {
+  mrListenFormatterError: {
     code: CodeMap.BAD_REQUEST,
     message: '参数格式错误',
     result: '',
   },
-  pipelineMissParamsError: {
+  mrListenMissParamsError: {
     code: CodeMap.BAD_REQUEST,
     message: '缺少必填项',
     result: '',
   },
-  pipelineAlreadyExited: {
+  mrListenAlreadyExited: {
     code: CodeMap.CONFLICT,
-    message: '该流水线已创建(名称重复)',
+    message: '监听已创建(名称重复)',
     result: '',
   },
-  pipelineCreateError: {
+  mrListenCreateError: {
     code: CodeMap.SERVER_ERROR,
-    message: '流水线创建失败',
+    message: 'MR监听创建失败',
     result: '',
   },
-  pipelineQueryError: {
+  mrListenQueryError: {
     code: CodeMap.SERVER_ERROR,
-    message: '流水线查询失败',
+    message: 'MR监听查询失败',
     result: '',
   },
 }
