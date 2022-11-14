@@ -10,8 +10,8 @@ const {
 } = require('@types/errTypes/user.type')
 
 const validUserFormatter = async (ctx, next) => {
-  const { user_name, password } = ctx.request.body || {}
-  if (!user_name || !password) {
+  const { name, password } = ctx.request.body || {}
+  if (!name || !password) {
     ctx.app.emit('error', userFormatterError, ctx)
     return
   }
@@ -19,9 +19,9 @@ const validUserFormatter = async (ctx, next) => {
 }
 
 const validUserHasExist = async (ctx, next) => {
-  const { user_name } = ctx.request.body || {}
+  const { name } = ctx.request.body || {}
   try {
-    const user = await UserService.getUserInfo({ user_name })
+    const user = await UserService.getUserInfo({ name })
     if (user) {
       ctx.app.emit('error', userAlreadyExited, ctx)
       return
@@ -34,9 +34,9 @@ const validUserHasExist = async (ctx, next) => {
 }
 
 const validUserPassword = async (ctx, next) => {
-  const { user_name, password } = ctx.request.body || {}
+  const { name, password } = ctx.request.body || {}
   try {
-    const user = await UserService.getUserInfo({ user_name })
+    const user = await UserService.getUserInfo({ name })
     if (!user) {
       ctx.app.emit('error', userNotExited, ctx)
       return
@@ -50,7 +50,7 @@ const validUserPassword = async (ctx, next) => {
       // 先赋值  然后传递给controller
       ctx.app.status = {
         id: user.id,
-        user_name: user.user_name,
+        name: user.name,
         password: db_password,
       }
     } else {

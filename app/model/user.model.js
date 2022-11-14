@@ -10,7 +10,7 @@ const User = mysql.define(
       primaryKey: true,
       autoIncrement: true,
     },
-    user_name: {
+    name: {
       type: DataTypes.CHAR(64),
       allowNull: false,
       unique: true,
