@@ -1,5 +1,5 @@
 const RepositoryService = require('@service/repository.service')
-
+const { missParamsError } = require('@types/errTypes/common.type')
 const {
   repositoryAlreadyExited,
   repositoryCreateError,
@@ -40,7 +40,17 @@ const validRepositoryHasExist = async (ctx, next) => {
   await next()
 }
 
+const validProjectQueryFormatter = async (ctx, next) => {
+  const { name } = ctx.request.query || {}
+  if (!name) {
+    ctx.app.emit('error', missParamsError)
+    return
+  }
+  await next()
+}
+
 module.exports = {
   validRepositoryFormatter,
   validRepositoryHasExist,
+  validProjectQueryFormatter,
 }

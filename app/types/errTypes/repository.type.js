@@ -26,4 +26,9 @@ module.exports = {
     message: '仓库查询失败',
     result: '',
   },
+  projectQueryError: {
+    code: CodeMap.SERVER_ERROR,
+    message: '项目查询失败',
+    result: '',
+  },
 }

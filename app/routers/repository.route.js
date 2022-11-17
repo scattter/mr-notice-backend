@@ -2,6 +2,7 @@ const Router = require('koa-router')
 const { validMiddleware } = require('@middleware/valid.middleware')
 const {
   createRepository,
+  queryAllProject,
   queryAllRepository,
 } = require('@controller/repository.controller')
 const {
@@ -20,5 +21,7 @@ router.post(
 )
 
 router.get('/list', validMiddleware, queryAllRepository)
+
+router.get('/projects', validMiddleware, queryAllProject)
 
 module.exports = router

@@ -1,4 +1,5 @@
 const RepositoryModule = require('@model/repository.model')
+const { queryAllPrivateProject } = require('@app/api/repository.api')
 
 class RepositoryService {
   async createRepository(name, owner, address, token) {
@@ -18,7 +19,7 @@ class RepositoryService {
   async findRepositoryInfo(name) {
     try {
       const repo = await RepositoryModule.findOne({
-        attributes: ['name'],
+        attributes: ['name', 'token', 'address'],
         where: {
           name,
         },
@@ -39,6 +40,33 @@ class RepositoryService {
           return temp
         })
       }
+    } catch (e) {
+      return Promise.reject(e)
+    }
+  }
+
+  async queryAllProject(name) {
+    try {
+      const repository = await this.findRepositoryInfo(name)
+      const { address, token } = repository
+      const projects = await queryAllPrivateProject(
+        address,
+        {
+          simple: true,
+        },
+        {
+          headers: {
+            'PRIVATE-TOKEN': token,
+          },
+        }
+      )
+      return projects.map(project => {
+        return {
+          id: project.id,
+          name: project.name,
+          web_url: project.web_url,
+        }
+      })
     } catch (e) {
       return Promise.reject(e)
     }
