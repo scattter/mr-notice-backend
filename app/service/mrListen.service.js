@@ -1,14 +1,24 @@
 const MrListenModule = require('@model/mrListen.model')
 
 class MrListenService {
-  async createMrListen(name, owner, address, projectId, branch) {
+  async createMrListen(
+    name,
+    owner,
+    repository,
+    projectId,
+    branch,
+    noticeType,
+    noticeAddress
+  ) {
     try {
       const res = await MrListenModule.create({
         name,
         owner,
-        address,
+        repository,
         projectId,
         branch,
+        noticeAddress,
+        noticeType,
       })
       return {
         ...res.dataValues,
