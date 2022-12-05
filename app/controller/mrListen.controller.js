@@ -7,15 +7,25 @@ const {
 
 class MrListenController {
   async createMrListen(ctx, next) {
-    const { name, owner, address, projectId, branch } = ctx.request.body
+    const {
+      name,
+      owner,
+      repository,
+      projectId,
+      branch,
+      noticeType,
+      noticeAddress,
+    } = ctx.request.body
 
     try {
       const res = await MrListenService.createMrListen(
         name,
         owner,
-        address,
+        repository,
         projectId,
-        branch
+        branch,
+        noticeType,
+        noticeAddress
       )
       ctx.body = {
         code: 10000,

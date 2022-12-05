@@ -23,11 +23,11 @@ const MrListenModule = mysql.define(
       unique: false,
       comment: '创建监听的创建人',
     },
-    address: {
+    repository: {
       type: DataTypes.STRING,
       allowNull: false,
       unique: false,
-      comment: '监听地址(gitlab的url地址)',
+      comment: '监听仓库(gitlab的根url地址)',
     },
     projectId: {
       type: DataTypes.INTEGER,
@@ -41,6 +41,20 @@ const MrListenModule = mysql.define(
       unique: false,
       defaultValue: 'master',
       comment: '监听分支',
+    },
+    noticeType: {
+      type: DataTypes.STRING,
+      allowNull: true,
+      unique: false,
+      defaultValue: '',
+      comment: '监听通知方式',
+    },
+    noticeAddress: {
+      type: DataTypes.STRING,
+      allowNull: true,
+      unique: false,
+      defaultValue: '',
+      comment: '监听通知地址',
     },
   },
   {

@@ -4,16 +4,16 @@ const { userError, userRegisterError } = require('@types/errTypes/user.type')
 
 class UserController {
   async registerUser(ctx, next) {
-    const { user_name, password } = ctx.request.body
+    const { name, password } = ctx.request.body
 
     try {
-      const res = await UserService.createUser(user_name, password)
+      const res = await UserService.createUser(name, password)
       ctx.body = {
         code: 10000,
         message: '用户注册成功',
         result: {
           id: res.id,
-          name: res.user_name,
+          name: res.name,
           token: res.token,
         },
       }
@@ -24,7 +24,7 @@ class UserController {
   }
 
   async loginUser(ctx, next) {
-    const { id, user_name, password } = ctx.app.status
+    const { id, name, password } = ctx.app.status
     try {
       const token = await UserService.loginUser(password)
       ctx.body = {
@@ -32,7 +32,7 @@ class UserController {
         message: '用户登录成功',
         result: {
           id,
-          user_name,
+          name,
           token,
         },
       }
